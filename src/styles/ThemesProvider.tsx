@@ -2,7 +2,15 @@ import { ThemeProvider } from "styled-components";
 
 const DefaultTheme = {
     colors: {
-        dafault: "#ffff",
+        default: "#ffff",
+        first_color: "#BB5B42",
+        secondary_color: "#274F83",
+    },
+
+    textColors: {
+        primary: "#000",
+        secondary: "#ffff",
+        header_title: "#D45331",
     },
 };
 

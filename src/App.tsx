@@ -1,3 +1,4 @@
+import Routers from "./routes/routes";
 import ThemesProvider from "./styles/ThemesProvider";
 import GlobalStyles from "./styles/globalStyles";
 
@@ -6,9 +7,7 @@ function App() {
         <>
             <ThemesProvider>
                 <GlobalStyles />
-                <div className="App" style={{ textAlign: "center" }}>
-                    <h1>Daily Gly</h1>
-                </div>
+                <Routers />
             </ThemesProvider>
         </>
     );
