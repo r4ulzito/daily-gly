@@ -12,6 +12,14 @@ const DefaultTheme = {
         secondary: "#ffff",
         header_title: "#D45331",
     },
+
+    fonts: {
+        default: "Poppins",
+    },
+
+    hovers: {
+        secondary_color_hover: "#1e3c63",
+    },
 };
 
 interface Props {
