@@ -6,6 +6,6 @@ export const LayoutContainer = styled.div`
 `;
 
 export const MainLayout = styled.main`
-    margin-left: 200px;
+    margin-left: 282px;
     width: 100%;
 `;
