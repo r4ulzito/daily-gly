@@ -7,7 +7,7 @@ export const NavItemContainer = styled.div`
         display: flex;
         gap: 12px;
         padding: 13px 0px 13px 24px;
-        border-left: 3px solid inherit;
+        border-left: 3px solid ${({ theme }) => theme.colors.first_color};
         transition: 0.3s;
 
         p {

@@ -1,17 +1,21 @@
 import { NavLink } from "react-router-dom";
-import DiarioNavIcon from "../../assets/DiarioNavIcon.svg";
 import * as S from "./styles/StyledNavItem";
+import { INavItem } from "../../interfaces/NavItemInterface";
 
-const NavItem = () => {
+interface NavItemProps {
+    item: INavItem;
+}
+
+const NavItem = ({ item }: NavItemProps) => {
     return (
         <S.NavItemContainer>
             <span></span>
             <NavLink
                 className={({ isActive }) => (isActive ? "active" : "")}
-                to="/my-diary"
+                to={item.path}
             >
-                <img src={DiarioNavIcon} alt="Icone Menu" />
-                <p>Diário</p>
+                <img src={`src/assets/${item.icon}`} alt="Icone Menu" />
+                <p>{item.title}</p>
             </NavLink>
         </S.NavItemContainer>
     );

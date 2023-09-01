@@ -3,6 +3,7 @@ import LoginPage from "../pages/LoginPage";
 import DiaryPage from "../pages/DiaryPage";
 import Layout from "../pages/Layout";
 import MonitorPage from "../pages/MonitorPage";
+import AboutPage from "../pages/AboutPage/intex";
 
 const Routers = () => {
     const user = true;
@@ -24,6 +25,7 @@ const Routers = () => {
                         <Route index element={<Navigate to="/my-diary" />} />
                         <Route path="my-diary" element={<DiaryPage />} />
                         <Route path="monitor" element={<MonitorPage />} />
+                        <Route path="sobre" element={<AboutPage />} />
                         <Route path="*" element={<Navigate to="/my-diary" />} />
                     </Route>
                 </Routes>

@@ -1,10 +1,17 @@
+import { INavItem } from "../../interfaces/NavItemInterface";
 import NavItem from "../NavItem";
 import * as S from "./styles/MenuNavStyles";
 
-const MenuNav = () => {
+interface MenuNavProps {
+    navItems: INavItem[];
+}
+
+const MenuNav = ({ navItems }: MenuNavProps) => {
     return (
         <S.NavContainer>
-            <NavItem />
+            {navItems.map((item) => (
+                <NavItem item={item} />
+            ))}
         </S.NavContainer>
     );
 };
