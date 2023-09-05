@@ -10,7 +10,7 @@ const MenuNav = ({ navItems }: MenuNavProps) => {
     return (
         <S.NavContainer>
             {navItems.map((item) => (
-                <NavItem item={item} />
+                <NavItem key={item.title} item={item} />
             ))}
         </S.NavContainer>
     );

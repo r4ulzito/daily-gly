@@ -29,7 +29,9 @@ export const ButtonGoogleLogin = styled.button`
     justify-content: center;
     align-items: center;
     gap: 8px;
-    padding: 11px 38px;
+    height: 43px;
+    width: 255px;
+    /* padding: 11px 38px; */
     border: 1px solid ${({ theme }) => theme.colors.secondary_color};
     border-radius: 4px;
     font-family: ${({ theme }) => theme.fonts.default}, sans-serif;

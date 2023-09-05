@@ -19,6 +19,7 @@ export const NavItemContainer = styled.div`
 
     a:hover {
         background-color: ${({ theme }) => theme.colors.third_color_opace};
+        border-left: 3px solid ${({ theme }) => theme.colors.third_color_opace};
     }
 
     a.active {
