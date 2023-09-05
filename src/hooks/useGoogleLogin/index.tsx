@@ -1,21 +1,33 @@
+import { useState } from "react";
 import { firebaseInitialize } from "../../firebase/config";
 
 export const userGoogleLogin = () => {
     const { auth, googleProvider } = firebaseInitialize();
 
+    const [loadingLogin, setLoadingLogin] = useState<boolean>(false);
+
     const signInWithGoogle = async () => {
+        setLoadingLogin(true);
         const calledGoogleProvider = googleProvider();
 
-        const { user } = await auth.signInWithPopup(calledGoogleProvider);
+        await auth
+            .signInWithPopup(calledGoogleProvider)
+            .then((result) => {
+                if (!result.user) {
+                    throw new Error("Falha na autenticação de usuário!");
+                }
+            })
+            .catch((error) => {
+                console.log(error.message);
+                setLoadingLogin(false);
+            });
 
-        if (!user) {
-            throw new Error("Falha na autenticação de usuário!");
-        }
+        setLoadingLogin(false);
     };
 
     const signOutWithGoogle = async () => {
         await auth.signOut();
     };
 
-    return { signInWithGoogle, signOutWithGoogle };
+    return { signInWithGoogle, signOutWithGoogle, loadingLogin };
 };
