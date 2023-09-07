@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
 
 body {
    min-height: 100vh;
+   background-color: ${({ theme }) => theme.colors.secondary_color};
 }
 
 ul {
