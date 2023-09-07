@@ -1,5 +1,7 @@
+import DailyTable from "../../components/DailyTable";
 import Header from "../../components/Header";
 import { IHeaderContent } from "../../interfaces/HeaderContentInterface";
+import { dataMock } from "../../mock/registersMock";
 
 const DiaryPage = () => {
     const headerContent: IHeaderContent = {
@@ -12,7 +14,7 @@ const DiaryPage = () => {
         <>
             <Header content={headerContent} />
             <div>
-                <h1>DiaryPage</h1>
+                <DailyTable data={dataMock} />
             </div>
         </>
     );
