@@ -1,8 +1,9 @@
 import { useState } from "react";
 import * as S from "./styles/DailyTableRowStyled";
+import { IRegistro } from "../../interfaces/RegistroInterface";
 
 interface DailyTableRowProps {
-    dayRegisters: Array<string>;
+    dayRegisters: IRegistro;
 }
 
 const DailyTableRow = ({ dayRegisters }: DailyTableRowProps) => {
@@ -15,47 +16,47 @@ const DailyTableRow = ({ dayRegisters }: DailyTableRowProps) => {
                     selected={select}
                     onClick={() => setSelect(!select)}
                 >
-                    {dayRegisters[0]}
+                    {dayRegisters.dia}
                 </S.RowDayCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters[1]}
+                    {dayRegisters.pre_cafe}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters[2]}
+                    {dayRegisters.pos_cafe}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters[3]}
+                    {dayRegisters.pre_almoco}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters[4]}
+                    {dayRegisters.pos_almoco}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell colSpan={1}>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters[5]}
+                    {dayRegisters.pre_jantar}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters[6]}
+                    {dayRegisters.pos_jantar}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowBeforeSleepCell selected={select}>
-                    {dayRegisters[7]}
+                    {dayRegisters.antes_dormir}
                 </S.RowBeforeSleepCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowObservationCell selected={select}>
-                    {dayRegisters[8]}
+                    {dayRegisters.observacao}
                 </S.RowObservationCell>
             </S.RowCell>
         </tr>

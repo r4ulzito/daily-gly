@@ -1,5 +1,7 @@
-export interface IRegistroMes {
+import { IRegistro } from "./RegistroInterface";
+
+export interface IRegistrosMes {
     ano: String;
     mes: String;
-    registros: Array<Array<string>>;
+    registros: Array<IRegistro>;
 }

@@ -1,9 +1,9 @@
-import { IRegistroMes } from "../../interfaces/RegistrosMesInterface";
+import { IRegistrosMes } from "../../interfaces/RegistrosMesInterface";
 import DailyTableHeader from "../DailyTableHeader";
 import DailyTableRow from "../DailyTableRow";
 
 interface DailyTableProps {
-    data: IRegistroMes;
+    data: IRegistrosMes;
 }
 
 const DailyTable = ({ data }: DailyTableProps) => {
@@ -12,7 +12,7 @@ const DailyTable = ({ data }: DailyTableProps) => {
             <DailyTableHeader />
             <tbody>
                 {data.registros.map((registro) => (
-                    <DailyTableRow key={registro[0]} dayRegisters={registro} />
+                    <DailyTableRow key={registro.dia} dayRegisters={registro} />
                 ))}
             </tbody>
         </table>
