@@ -1,9 +1,9 @@
-import firebase from "firebase/compat/app";
 import { createContext, PropsWithChildren, useState } from "react";
+import { IUser } from "../interfaces/UserInterface";
 
 interface AuthContextProps {
-    user: firebase.User | null;
-    setUser: (user: firebase.User | null) => void;
+    user: IUser | null;
+    setUser: (user: IUser | null) => void;
 }
 
 const initialValue: AuthContextProps = {
@@ -14,7 +14,7 @@ const initialValue: AuthContextProps = {
 export const AuthContext = createContext<AuthContextProps>(initialValue);
 
 export const AuthContextProvider = (props: PropsWithChildren) => {
-    const [user, setUser] = useState<firebase.User | null>(null);
+    const [user, setUser] = useState<IUser | null>(null);
 
     return (
         <AuthContext.Provider value={{ user, setUser }}>

@@ -46,10 +46,10 @@ const SideMenu = () => {
         <S.SideMenuContainer>
             <S.UserContainer>
                 <S.UserImagemContainer>
-                    <img src={user?.photoURL!} alt="icone do usuario" />
+                    <img src={user?.userPhotoUrl!} alt="icone do usuario" />
                 </S.UserImagemContainer>
                 <S.UserNameContainer>
-                    <p>{formatName(user?.displayName!)}</p>
+                    <p>{formatName(user?.userName!)}</p>
                     <img
                         src={UserDropDownIcon}
                         alt="icone dropdown usuario"
