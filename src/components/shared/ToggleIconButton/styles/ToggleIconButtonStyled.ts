@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 interface ToggleIconButtonProps {
     upeffect?: "true";
+    hide?: "true";
 }
 
 export const ToggleIconButtonContainer = styled.span<ToggleIconButtonProps>`
-    display: flex;
+    display: ${({ hide }) => (hide === "true" ? "none" : "flex")};
     justify-content: center;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.first_color};

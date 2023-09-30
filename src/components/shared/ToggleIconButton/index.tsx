@@ -4,11 +4,18 @@ interface UpButtonProps {
     content: IIconData;
     onClick?: () => void;
     upEffect?: boolean;
+    hide?: boolean;
 }
 
-const ToggleIconButton = ({ onClick, content, upEffect }: UpButtonProps) => {
+const ToggleIconButton = ({
+    onClick,
+    content,
+    upEffect,
+    hide,
+}: UpButtonProps) => {
     return (
         <S.ToggleIconButtonContainer
+            hide={hide ? "true" : undefined}
             upeffect={upEffect ? "true" : undefined}
             onClick={onClick}
         >

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import * as S from "./styles/DailyTableRowStyled";
-import { IRegistro } from "../../interfaces/RegistroInterface";
+import { IRegister } from "../../interfaces/RegisterInterface";
 
 interface DailyTableRowProps {
-    dayRegisters: IRegistro;
+    dayRegisters: IRegister;
 }
 
 const DailyTableRow = ({ dayRegisters }: DailyTableRowProps) => {
@@ -16,47 +16,79 @@ const DailyTableRow = ({ dayRegisters }: DailyTableRowProps) => {
                     selected={select}
                     onClick={() => setSelect(!select)}
                 >
-                    {dayRegisters.dia}
+                    {dayRegisters.day}
                 </S.RowDayCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters.pre_cafe}
+                    {dayRegisters.before_breakfast === 0 ? (
+                        <S.EmptyMarker>empty</S.EmptyMarker>
+                    ) : (
+                        dayRegisters.before_breakfast
+                    )}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters.pos_cafe}
+                    {dayRegisters.after_breakfast === 0 ? (
+                        <S.EmptyMarker>empty</S.EmptyMarker>
+                    ) : (
+                        dayRegisters.after_breakfast
+                    )}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters.pre_almoco}
+                    {dayRegisters.before_lunch === 0 ? (
+                        <S.EmptyMarker>empty</S.EmptyMarker>
+                    ) : (
+                        dayRegisters.before_lunch
+                    )}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters.pos_almoco}
+                    {dayRegisters.after_lunch === 0 ? (
+                        <S.EmptyMarker>empty</S.EmptyMarker>
+                    ) : (
+                        dayRegisters.after_lunch
+                    )}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell colSpan={1}>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters.pre_jantar}
+                    {dayRegisters.before_dinner === 0 ? (
+                        <S.EmptyMarker>empty</S.EmptyMarker>
+                    ) : (
+                        dayRegisters.before_dinner
+                    )}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowSnackCell selected={select}>
-                    {dayRegisters.pos_jantar}
+                    {dayRegisters.after_dinner === 0 ? (
+                        <S.EmptyMarker>empty</S.EmptyMarker>
+                    ) : (
+                        dayRegisters.after_dinner
+                    )}
                 </S.RowSnackCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowBeforeSleepCell selected={select}>
-                    {dayRegisters.antes_dormir}
+                    {dayRegisters.before_sleep === 0 ? (
+                        <S.EmptyMarker>empty</S.EmptyMarker>
+                    ) : (
+                        dayRegisters.before_sleep
+                    )}
                 </S.RowBeforeSleepCell>
             </S.RowCell>
             <S.RowCell>
                 <S.RowObservationCell selected={select}>
-                    {dayRegisters.observacao}
+                    {dayRegisters.observation.length === 0 ? (
+                        <S.EmptyMarker>empty</S.EmptyMarker>
+                    ) : (
+                        dayRegisters.observation
+                    )}
                 </S.RowObservationCell>
             </S.RowCell>
         </tr>

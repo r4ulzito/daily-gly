@@ -3,12 +3,26 @@ import styled from "styled-components";
 export const DiaryPageContainer = styled.section`
     display: flex;
     align-items: flex-start;
+    justify-content: center;
     gap: 32px;
     padding: 40px 32px;
 
     @media screen and (max-width: 1280px) {
         flex-direction: column-reverse;
     }
+`;
+
+export const TableContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    min-width: 832px;
+`;
+
+export const TableLoaderContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 485px;
 `;
 
 export const FormContainer = styled.form`

@@ -3,8 +3,8 @@ import { Nullable } from "primereact/ts-helpers";
 import * as S from "./styles/CalendarInputStyled";
 
 interface CalendarInputProps {
-    date: Nullable<string | Date | Date[]>;
-    setDate: (value: Nullable<string | Date | Date[]>) => void;
+    date: Nullable<Date>;
+    setDate: (value: Nullable<Date>) => void;
 }
 
 const CalendarInput = ({ date, setDate }: CalendarInputProps) => {
@@ -17,8 +17,8 @@ const CalendarInput = ({ date, setDate }: CalendarInputProps) => {
                     fontWeight: "300",
                     fontFamily: "Poppins",
                 }}
-                value={date}
-                onChange={(e) => setDate(e.value)}
+                value={date === null ? new Date() : date}
+                onChange={(e) => setDate(e.value as Date)}
                 dateFormat="dd/mm/yy"
                 showIcon
             />
