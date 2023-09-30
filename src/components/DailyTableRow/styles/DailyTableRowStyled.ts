@@ -39,7 +39,6 @@ export const RowObservationCell = styled.div<RowProps>`
         selected ? theme.textColors.secondary : ""};
     background-color: ${({ theme, selected }) =>
         selected ? theme.colors.first_color_hover : ""};
-    min-width: 216px;
 `;
 
 export const RowBeforeSleepCell = styled.div<RowProps>`
@@ -47,4 +46,8 @@ export const RowBeforeSleepCell = styled.div<RowProps>`
         selected ? theme.textColors.secondary : ""};
     background-color: ${({ theme, selected }) =>
         selected ? theme.colors.first_color_hover : ""};
+`;
+
+export const EmptyMarker = styled.span`
+    opacity: 0;
 `;

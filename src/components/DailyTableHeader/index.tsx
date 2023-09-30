@@ -43,9 +43,9 @@ const DailyTableHeader = () => {
                     </S.SnackCellContent>
                 </S.HeaderCell>
                 <S.HeaderCell>
-                    <S.SnackCellContent>
+                    <S.ObservationCellContent>
                         <p>Obervações</p>
-                    </S.SnackCellContent>
+                    </S.ObservationCellContent>
                 </S.HeaderCell>
             </tr>
         </thead>

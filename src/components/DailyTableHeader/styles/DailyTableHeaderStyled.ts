@@ -23,3 +23,10 @@ export const SnackCellPeriod = styled.p`
     justify-content: space-around;
     width: 100%;
 `;
+
+export const ObservationCellContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 2px 0px;
+    min-width: 216px;
+`;
