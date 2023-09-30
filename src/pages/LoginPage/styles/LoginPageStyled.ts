@@ -4,8 +4,10 @@ export const LoginPageContainer = styled.div`
     height: 100vh;
     background-color: ${({ theme }) => theme.colors.secondary_color};
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 60px;
+    padding-top: 100px;
 `;
 
 export const LoginModalContainer = styled.div`
@@ -31,7 +33,6 @@ export const ButtonGoogleLogin = styled.button`
     gap: 8px;
     height: 43px;
     width: 255px;
-    /* padding: 11px 38px; */
     border: 1px solid ${({ theme }) => theme.colors.secondary_color};
     border-radius: 4px;
     font-family: ${({ theme }) => theme.fonts.default}, sans-serif;
@@ -45,5 +46,21 @@ export const ButtonGoogleLogin = styled.button`
     &:hover {
         background-color: ${({ theme }) => theme.hovers.secondary_color_hover};
         border-color: ${({ theme }) => theme.hovers.secondary_color_hover};
+    }
+`;
+
+export const AuthorParagraph = styled.p`
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
+    color: ${({ theme }) => theme.textColors.secondary};
+
+    a {
+        transition: 0.3s;
+    }
+
+    a:hover {
+        color: ${({ theme }) => theme.textColors.primary};
+        transition: 0.3s;
     }
 `;
