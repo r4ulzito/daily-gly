@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 
 import LoginPage from "../pages/LoginPage";
-import DiaryPage from "../pages/DiaryPage";
 import Layout from "../pages/Layout";
 import MonitorPage from "../pages/MonitorPage";
 import AboutPage from "../pages/AboutPage/intex";
@@ -10,6 +9,7 @@ import AboutPage from "../pages/AboutPage/intex";
 import { useVerifyLogedUser } from "../hooks/useVerifyLogedUser";
 import { AuthContext } from "../contexts/AuthContext";
 import LoadingPage from "../pages/LoadingPage";
+import DiaryPage from "../pages/DiaryPage";
 
 const Routers = () => {
     const { verifyLogedGoogleUser, loadingUser } = useVerifyLogedUser();

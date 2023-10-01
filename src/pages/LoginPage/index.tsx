@@ -43,6 +43,15 @@ const LoginPage = () => {
                     </S.ButtonGoogleLogin>
                 )}
             </S.LoginModalContainer>
+            <S.AuthorParagraph>
+                Desenvolvido por{" "}
+                <a
+                    href="https://www.linkedin.com/in/raul-de-souza/"
+                    target="_blank"
+                >
+                    Raul de Souza
+                </a>
+            </S.AuthorParagraph>
         </S.LoginPageContainer>
     );
 };

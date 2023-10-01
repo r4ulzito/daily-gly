@@ -1,8 +1,7 @@
 import * as S from "./styles/DiaryPageStyled";
 import DailyTable from "../../components/DailyTable";
 import Header from "../../components/Header";
-import { IHeaderContent } from "../../interfaces/HeaderContentInterface";
-import { useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { Nullable } from "primereact/ts-helpers";
 import CalendarInput from "../../components/shared/CalendarInput";
 import PeriodSelectInput from "../../components/shared/PeriodSelectInput";
@@ -11,11 +10,20 @@ import ValueInput from "../../components/shared/ValueInput";
 import ObservationInput from "../../components/shared/ObservationInput";
 import FormButton from "../../components/shared/FormButton";
 import ToggleIconButton from "../../components/shared/ToggleIconButton";
-import { TypePeriodsEnum } from "../../enum/TypePeriodsEnum";
-import { getUserMonthDayRegisters } from "../../service/registerService";
+import {
+    createDayRegisterService,
+    getUserMonthDayRegistersService,
+} from "../../service/registerService";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ThreeDots } from "react-loader-spinner";
 import { formatDate } from "../../util/dateFormater";
+import { ICreateRegisterRequest } from "../../interfaces/request/CreateRegisterRequestInterface";
+import {
+    formButtonsIcons,
+    headerContent,
+    periodOptions,
+    toggleButtonsIcons,
+} from "./DiaryPageContents";
 
 const DiaryPage = () => {
     const [showForm, setShowForm] = useState<boolean>(false);
@@ -26,56 +34,40 @@ const DiaryPage = () => {
         useState<Nullable<number | null>>(100);
     const [observation, setObservation] = useState<string>("");
 
-    const headerContent: IHeaderContent = {
-        title: "Diário de Glicemia Mensal",
-        description:
-            "Registre e altere aqui seus níveis de glicemias do dia-a-dia",
-    };
-
-    const periodOptions: IPeriod[] = [
-        { name: "Pré / Café", code: TypePeriodsEnum.PRE_CAFE },
-        { name: "Pós / Café", code: TypePeriodsEnum.POS_CAFE },
-        { name: "Pré / Almoço", code: TypePeriodsEnum.PRE_ALMOCO },
-        { name: "Pós / Almoço", code: TypePeriodsEnum.POS_ALMOCO },
-        { name: "Pré / Jantar", code: TypePeriodsEnum.PRE_JANTAR },
-        { name: "Pós / Jantar", code: TypePeriodsEnum.POS_JANTAR },
-        { name: "Antes Dormir", code: TypePeriodsEnum.ANTES_DORMIR },
-        { name: "Observação", code: TypePeriodsEnum.OBSERVACAO },
-    ];
-
-    const formButtonsIcons: Array<IIconData> = [
-        {
-            iconAlt: "icone botao salvar",
-            iconFile: "SaveIcon.svg",
-        },
-        {
-            iconAlt: "icone registrar",
-            iconFile: "AddIcon.svg",
-        },
-    ];
-
-    const toggleButtonsIcons: Array<IIconData> = [
-        {
-            iconAlt: "icone de recolher formulario",
-            iconFile: "UpIcon.svg",
-        },
-        {
-            iconAlt: "icone buscar registros",
-            iconFile: "SearchIcon.svg",
-        },
-    ];
-
     const { user } = useContext(AuthContext);
 
-    const { data, isLoading, isFetching, refetch } = getUserMonthDayRegisters(
-        selectDate!,
-        user?.id!
-    );
+    const {
+        data,
+        isLoading: isLoadingSearchRegisters,
+        isFetching,
+        refetch,
+    } = getUserMonthDayRegistersService(selectDate!, user?.id!);
 
-    const searchRegisters = async () => {
-        if (!isLoading && !isFetching) {
-            await refetch();
-        }
+    const { createDayRegister, isLoading: isLoadingCreateRegister } =
+        createDayRegisterService();
+
+    const resetForms = () => {
+        setSelectPeriod(null);
+        setSelectValue(100);
+        setObservation("");
+    };
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const payload: ICreateRegisterRequest = {
+            user_id: user?.id!,
+            date: selectDate?.toISOString().slice(0, 10)!,
+            period: selectPeriod?.code!,
+            gly_value:
+                selectPeriod?.code! === "OBSERVACAO" ? null : selectValue!,
+            observation: observation,
+        };
+
+        await createDayRegister(payload);
+        setShowForm(!showForm);
+        resetForms();
+        await refetch();
     };
 
     useEffect(() => {
@@ -87,7 +79,7 @@ const DiaryPage = () => {
             <Header content={headerContent} />
             <S.DiaryPageContainer>
                 <S.TableContainer>
-                    {isLoading || isFetching ? (
+                    {isLoadingSearchRegisters || isFetching ? (
                         <S.TableLoaderContainer>
                             <ThreeDots
                                 height="60"
@@ -109,11 +101,7 @@ const DiaryPage = () => {
                     )}
                 </S.TableContainer>
 
-                <S.FormContainer
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                    }}
-                >
+                <S.FormContainer onSubmit={(e) => handleSubmit(e)}>
                     <S.CalendarContainer>
                         <CalendarInput
                             date={selectDate}
@@ -126,7 +114,11 @@ const DiaryPage = () => {
                             />
                         ) : (
                             <ToggleIconButton
-                                onClick={searchRegisters}
+                                onClick={async () =>
+                                    !isLoadingSearchRegisters && !isFetching
+                                        ? refetch()
+                                        : undefined
+                                }
                                 content={toggleButtonsIcons[1]}
                             />
                         )}
@@ -138,8 +130,7 @@ const DiaryPage = () => {
                                 selectPeriod={selectPeriod!}
                                 setSelectPeriod={setSelectPeriod}
                             />
-                            {selectPeriod?.code ===
-                            TypePeriodsEnum.OBSERVACAO ? (
+                            {selectPeriod?.code === "OBSERVACAO" ? (
                                 <ObservationInput
                                     observation={observation}
                                     setObservation={setObservation}
@@ -151,7 +142,10 @@ const DiaryPage = () => {
                                 />
                             )}
                             <S.SaveButtonContainer>
-                                <FormButton content={formButtonsIcons[0]}>
+                                <FormButton
+                                    disabled={isLoadingCreateRegister}
+                                    content={formButtonsIcons[0]}
+                                >
                                     Salvar
                                 </FormButton>
                                 <ToggleIconButton
@@ -163,7 +157,10 @@ const DiaryPage = () => {
                         </>
                     ) : (
                         <FormButton
-                            onClick={() => setShowForm(!showForm)}
+                            typeButton="submit"
+                            onClick={() =>
+                                showForm ? undefined : setShowForm(!showForm)
+                            }
                             content={formButtonsIcons[1]}
                         >
                             Adicionar
