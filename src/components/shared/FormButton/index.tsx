@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import * as S from "./styles/FormButtonStled";
 
 interface FormButtonProps {
-    content: IIconData;
+    content?: IIconData;
     buttonProps?: React.ComponentProps<"button">;
     typeButton?: "button" | "submit" | "reset";
     onClick?: () => void;
@@ -23,10 +23,12 @@ const FormButton = ({
             onClick={onClick}
         >
             <S.FormButtonContent>
-                <img
-                    src={`src/assets/${content.iconFile}`}
-                    alt={content.iconAlt}
-                />
+                {content && (
+                    <img
+                        src={`src/assets/${content.iconFile}`}
+                        alt={content.iconAlt}
+                    />
+                )}
                 <p>{children}</p>
             </S.FormButtonContent>
         </S.FormButtonContainer>

@@ -5,6 +5,7 @@ import { formatDate } from "../util/dateFormater";
 import { IFormatDate } from "../interfaces/FormatDateInterface";
 import { ICreateRegisterRequest } from "../interfaces/request/CreateRegisterRequestInterface";
 import { handleInvalidateQuery } from "../util/invalidateQuery";
+import { toast } from "react-toastify";
 
 const REGISTERS_PATH = "/registers";
 
@@ -50,6 +51,10 @@ export const createDayRegisterService = () => {
                 `${import.meta.env.VITE_API_BASE_URL}${REGISTERS_PATH}`,
                 requestBody
             );
+
+            if (response.status === 201) {
+                toast.success("Registro efetuado com sucesso!");
+            }
 
             return response.data;
         }
