@@ -11,6 +11,7 @@ const CalendarInput = ({ date, setDate }: CalendarInputProps) => {
     return (
         <S.CalendarInputContainer>
             <Calendar
+                maxDate={new Date()}
                 style={{ width: "256px", height: "43px" }}
                 inputStyle={{
                     color: "#fff",

@@ -24,6 +24,10 @@ import {
     periodOptions,
     toggleButtonsIcons,
 } from "./DiaryPageContents";
+import { createRegisterValidate } from "../../validation/schemas/createRegisterSchema";
+import { IFormInputError } from "../../interfaces/FormInputErrorInterface";
+import moment from "moment";
+import { toast } from "react-toastify";
 
 const DiaryPage = () => {
     const [showForm, setShowForm] = useState<boolean>(false);
@@ -32,7 +36,9 @@ const DiaryPage = () => {
     const [selectPeriod, setSelectPeriod] = useState<IPeriod | null>(null);
     const [selectValue, setSelectValue] =
         useState<Nullable<number | null>>(100);
-    const [observation, setObservation] = useState<string>("");
+    const [observation, setObservation] = useState<string | null>("");
+
+    const [error, setError] = useState<IFormInputError | null>(null);
 
     const { user } = useContext(AuthContext);
 
@@ -55,19 +61,36 @@ const DiaryPage = () => {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        if (error) {
+            setError(null);
+        }
+
         const payload: ICreateRegisterRequest = {
             user_id: user?.id!,
-            date: selectDate?.toISOString().slice(0, 10)!,
+            date: moment(selectDate!).format().slice(0, 10)!,
             period: selectPeriod?.code!,
             gly_value:
                 selectPeriod?.code! === "OBSERVACAO" ? null : selectValue!,
-            observation: observation,
+            observation: observation!,
         };
 
-        await createDayRegister(payload);
-        setShowForm(!showForm);
-        resetForms();
-        await refetch();
+        try {
+            await createRegisterValidate(payload);
+
+            await createDayRegister(payload);
+            setShowForm(!showForm);
+            resetForms();
+            await refetch();
+        } catch (error: any) {
+            if (
+                error.message.field ===
+                ("PeriodInput" || "GlyValueInput" || "ObservationInput")
+            ) {
+                setError(error.message);
+            } else {
+                toast.error("Não foi possível criar o registro!");
+            }
+        }
     };
 
     useEffect(() => {
@@ -126,33 +149,65 @@ const DiaryPage = () => {
                     {showForm ? (
                         <>
                             <PeriodSelectInput
+                                error={error}
                                 options={periodOptions}
                                 selectPeriod={selectPeriod!}
                                 setSelectPeriod={setSelectPeriod}
                             />
                             {selectPeriod?.code === "OBSERVACAO" ? (
                                 <ObservationInput
-                                    observation={observation}
+                                    error={error}
+                                    observation={observation!}
                                     setObservation={setObservation}
                                 />
                             ) : (
                                 <ValueInput
+                                    error={error}
                                     selectValue={selectValue}
                                     setSelectValue={setSelectValue}
                                 />
                             )}
                             <S.SaveButtonContainer>
-                                <FormButton
-                                    disabled={isLoadingCreateRegister}
-                                    content={formButtonsIcons[0]}
-                                >
-                                    Salvar
-                                </FormButton>
-                                <ToggleIconButton
-                                    upEffect
-                                    content={toggleButtonsIcons[0]}
-                                    onClick={() => setShowForm(false)}
-                                />
+                                {isLoadingCreateRegister ? (
+                                    <>
+                                        <FormButton
+                                            disabled={isLoadingCreateRegister}
+                                        >
+                                            <ThreeDots
+                                                height="32"
+                                                width="32"
+                                                radius="9"
+                                                color="#ffff"
+                                                ariaLabel="three-dots-loading"
+                                                wrapperStyle={{}}
+                                                visible={true}
+                                            />
+                                        </FormButton>
+                                        <ToggleIconButton
+                                            upEffect
+                                            content={toggleButtonsIcons[0]}
+                                            onClick={() =>
+                                                isLoadingCreateRegister
+                                                    ? null
+                                                    : setShowForm(false)
+                                            }
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <FormButton
+                                            disabled={isLoadingCreateRegister}
+                                            content={formButtonsIcons[0]}
+                                        >
+                                            Salvar
+                                        </FormButton>
+                                        <ToggleIconButton
+                                            upEffect
+                                            content={toggleButtonsIcons[0]}
+                                            onClick={() => setShowForm(false)}
+                                        />
+                                    </>
+                                )}
                             </S.SaveButtonContainer>
                         </>
                     ) : (

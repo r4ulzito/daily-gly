@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
-export const PeriodSelectInputContainer = styled.div`
+interface PeriodSelectInputProps {
+    error?: "true";
+}
+
+export const PeriodSelectInputContainer = styled.div<PeriodSelectInputProps>`
     div.p-dropdown {
         background-color: transparent;
-        border: 1px solid ${({ theme }) => theme.colors.default};
+        border: 1px solid
+            ${({ theme, error }) =>
+                error ? theme.colors.error_color : theme.colors.default};
         border-radius: 4px;
 
         &:focus {
@@ -12,12 +18,18 @@ export const PeriodSelectInputContainer = styled.div`
         }
 
         &:hover {
-            border-color: ${({ theme }) => theme.colors.default};
+            border-color: ${({ theme, error }) =>
+                error === "true"
+                    ? theme.colors.error_color
+                    : theme.colors.default};
         }
 
         &:not(.p-disabled).p-focus {
             box-shadow: none;
-            border-color: ${({ theme }) => theme.colors.default};
+            border-color: ${({ theme, error }) =>
+                error === "true"
+                    ? theme.colors.error_color
+                    : theme.colors.default};
         }
 
         span {
@@ -29,12 +41,16 @@ export const PeriodSelectInputContainer = styled.div`
         }
 
         span.p-placeholder {
-            color: ${({ theme }) => theme.textColors.secondary};
+            color: ${({ theme, error }) =>
+                error ? theme.colors.error_color : theme.textColors.secondary};
         }
 
         div {
             svg.p-icon {
-                color: ${({ theme }) => theme.colors.default};
+                color: ${({ theme, error }) =>
+                    error
+                        ? theme.colors.error_color
+                        : theme.textColors.secondary};
             }
         }
     }

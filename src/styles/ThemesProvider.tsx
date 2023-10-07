@@ -9,6 +9,7 @@ const DefaultTheme = {
         third_color: "#8D422E",
         third_color_opace: "rgba(141, 66, 46, 0.6)",
         fourth_color: "#461D11",
+        error_color: "#e24c4c",
     },
 
     textColors: {
