@@ -82,16 +82,23 @@ const DiaryPage = () => {
             resetForms();
             await refetch();
         } catch (error: any) {
-            if (
-                error.message.field ===
-                ("PeriodInput" || "GlyValueInput" || "ObservationInput")
-            ) {
-                setError(error.message);
-            } else {
-                toast.error("Não foi possível criar o registro!");
+            switch (error.message.field) {
+                case "PeriodInput":
+                    setError(error.message);
+                    break;
+                case "GlyValueInput":
+                    setError(error.message);
+                    break;
+                case "ObservationInput":
+                    setError(error.message);
+                    break;
+                default:
+                    toast.error("Não foi possível criar o registro!");
             }
         }
     };
+
+    console.log(error);
 
     useEffect(() => {
         refetch();
