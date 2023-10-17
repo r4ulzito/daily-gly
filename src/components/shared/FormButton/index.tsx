@@ -29,7 +29,7 @@ const FormButton = ({
                         alt={content.iconAlt}
                     />
                 )}
-                <p>{children}</p>
+                <span>{children}</span>
             </S.FormButtonContent>
         </S.FormButtonContainer>
     );

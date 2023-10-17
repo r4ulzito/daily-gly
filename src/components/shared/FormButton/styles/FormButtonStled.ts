@@ -24,7 +24,7 @@ export const FormButtonContent = styled.span`
     justify-content: center;
     gap: 8px;
 
-    p {
+    span {
         color: ${({ theme }) => theme.textColors.secondary};
         font-size: 18px;
         font-weight: 400;

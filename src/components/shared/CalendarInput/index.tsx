@@ -5,9 +5,16 @@ import * as S from "./styles/CalendarInputStyled";
 interface CalendarInputProps {
     date: Nullable<Date>;
     setDate: (value: Nullable<Date>) => void;
+    dateFormat: string;
+    view?: "date" | "month" | "year";
 }
 
-const CalendarInput = ({ date, setDate }: CalendarInputProps) => {
+const CalendarInput = ({
+    date,
+    setDate,
+    dateFormat,
+    view,
+}: CalendarInputProps) => {
     return (
         <S.CalendarInputContainer>
             <Calendar
@@ -19,9 +26,13 @@ const CalendarInput = ({ date, setDate }: CalendarInputProps) => {
                     fontFamily: "Poppins",
                 }}
                 value={date === null ? new Date() : date}
-                onChange={(e) => setDate(e.value as Date)}
-                dateFormat="dd/mm/yy"
+                onChange={(e) => {
+                    setDate(e.value as Date);
+                }}
+                dateFormat={dateFormat}
+                view={view}
                 showIcon
+                viewDate={date}
             />
         </S.CalendarInputContainer>
     );

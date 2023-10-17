@@ -98,8 +98,6 @@ const DiaryPage = () => {
         }
     };
 
-    console.log(error);
-
     useEffect(() => {
         refetch();
     }, []);
@@ -134,6 +132,8 @@ const DiaryPage = () => {
                 <S.FormContainer onSubmit={(e) => handleSubmit(e)}>
                     <S.CalendarContainer>
                         <CalendarInput
+                            view="date"
+                            dateFormat="dd/mm/yy"
                             date={selectDate}
                             setDate={setSelectDate}
                         />
