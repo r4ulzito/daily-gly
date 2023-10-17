@@ -34,7 +34,7 @@ const ValueInput = ({
                 }
                 mode="decimal"
                 showButtons
-                min={1}
+                min={0}
                 max={600}
             />
         </S.ValueInputContainer>

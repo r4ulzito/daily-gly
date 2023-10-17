@@ -35,7 +35,6 @@ export const getUserMonthDayRegistersService = (date: Date, userId: number) => {
             };
         },
         {
-            staleTime: 1000 * 60,
             retry: 3,
             enabled: false,
         }

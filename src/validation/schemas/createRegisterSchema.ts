@@ -52,9 +52,9 @@ export const createRegisterValidate = async (
                           message: "O valor é obrigatório",
                       })
                       .nullable()
-                      .min(1, {
+                      .min(0, {
                           field: "GlyValueInput",
-                          message: "O valor deve ser maior que 0",
+                          message: "O valor deve ser igual ou maior a 0",
                       })
                       .max(600, {
                           field: "GlyValueInput",

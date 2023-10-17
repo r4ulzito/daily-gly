@@ -1,5 +1,7 @@
 import Header from "../../components/Header";
+import * as S from "./styles/MonitorPageStyled";
 import { IHeaderContent } from "../../interfaces/HeaderContentInterface";
+import MediaGlyPanel from "../../components/MediaGlyPanel";
 
 const MonitorPage = () => {
     const headerContent: IHeaderContent = {
@@ -11,9 +13,9 @@ const MonitorPage = () => {
     return (
         <>
             <Header content={headerContent} />
-            <div>
-                <h1>MonitorPage</h1>
-            </div>
+            <S.MonitorPageContainer>
+                <MediaGlyPanel />
+            </S.MonitorPageContainer>
         </>
     );
 };
