@@ -15,7 +15,7 @@ const NavItem = ({ item }: NavItemProps) => {
                 to={item.path}
             >
                 <img
-                    src={`src/assets/navIcons/${item.icon}`}
+                    src={`../../assets/navIcons/${item.icon}`}
                     alt="Icone Menu"
                 />
                 <p>{item.title}</p>
