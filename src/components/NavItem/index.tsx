@@ -14,10 +14,7 @@ const NavItem = ({ item }: NavItemProps) => {
                 className={({ isActive }) => (isActive ? "active" : "")}
                 to={item.path}
             >
-                <img
-                    src={`../../assets/navIcons/${item.icon}`}
-                    alt="Icone Menu"
-                />
+                <img src={`/assets/navIcons/${item.icon}`} alt="Icone Menu" />
                 <p>{item.title}</p>
             </NavLink>
         </S.NavItemContainer>
