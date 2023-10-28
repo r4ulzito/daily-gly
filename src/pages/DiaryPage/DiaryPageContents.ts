@@ -3,6 +3,8 @@ import { IPeriod } from "../../interfaces/PeriodInterface";
 
 import UpIcon from "../../assets/UpIcon.svg";
 import SearchIcon from "../../assets/SearchIcon.svg";
+import SaveIcon from "../../assets/SaveIcon.svg";
+import AddIcon from "../../assets/AddIcon.svg";
 
 export const headerContent: IHeaderContent = {
     title: "Diário de Glicemia Mensal",
@@ -23,11 +25,11 @@ export const periodOptions: IPeriod[] = [
 export const formButtonsIcons: Array<IIconData> = [
     {
         iconAlt: "icone botao salvar",
-        iconFile: "SaveIcon.svg",
+        iconFile: SaveIcon,
     },
     {
         iconAlt: "icone registrar",
-        iconFile: "AddIcon.svg",
+        iconFile: AddIcon,
     },
 ];
 
