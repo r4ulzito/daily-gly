@@ -7,6 +7,10 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import LogoutIcon from "../../assets/LogoutIcon.svg";
 
+import DiarioNavIcon from "../../assets/navIcons/DiarioNavIcon.svg";
+import MontinorNavIcon from "../../assets/navIcons/MonitorNavIcon.svg";
+import SobreNavIcon from "../../assets/navIcons/SobreNavIcon.svg";
+
 const SideMenu = () => {
     const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
 
@@ -14,17 +18,17 @@ const SideMenu = () => {
         {
             path: "/my-diary",
             title: "Diário",
-            icon: "DiarioNavIcon.svg",
+            icon: DiarioNavIcon,
         },
         {
             path: "/monitor",
             title: "Monitoramento",
-            icon: "MonitorNavIcon.svg",
+            icon: MontinorNavIcon,
         },
         {
             path: "/sobre",
             title: "Sobre",
-            icon: "SobreNavIcon.svg",
+            icon: SobreNavIcon,
         },
     ];
 
