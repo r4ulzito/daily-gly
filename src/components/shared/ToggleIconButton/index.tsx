@@ -19,7 +19,7 @@ const ToggleIconButton = ({
             upeffect={upEffect ? "true" : undefined}
             onClick={onClick}
         >
-            <img src={`src/assets/${content.iconFile}`} alt={content.iconAlt} />
+            <img src={content.iconFile} alt={content.iconAlt} />
         </S.ToggleIconButtonContainer>
     );
 };
