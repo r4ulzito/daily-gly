@@ -24,10 +24,7 @@ const FormButton = ({
         >
             <S.FormButtonContent>
                 {content && (
-                    <img
-                        src={`src/assets/${content.iconFile}`}
-                        alt={content.iconAlt}
-                    />
+                    <img src={content.iconFile} alt={content.iconAlt} />
                 )}
                 <span>{children}</span>
             </S.FormButtonContent>

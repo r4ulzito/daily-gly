@@ -1,6 +1,11 @@
 import { IHeaderContent } from "../../interfaces/HeaderContentInterface";
 import { IPeriod } from "../../interfaces/PeriodInterface";
 
+import UpIcon from "../../assets/UpIcon.svg";
+import SearchIcon from "../../assets/SearchIcon.svg";
+import SaveIcon from "../../assets/SaveIcon.svg";
+import AddIcon from "../../assets/AddIcon.svg";
+
 export const headerContent: IHeaderContent = {
     title: "Diário de Glicemia Mensal",
     description: "Registre e altere aqui seus níveis de glicemias do dia-a-dia",
@@ -20,21 +25,21 @@ export const periodOptions: IPeriod[] = [
 export const formButtonsIcons: Array<IIconData> = [
     {
         iconAlt: "icone botao salvar",
-        iconFile: "SaveIcon.svg",
+        iconFile: SaveIcon,
     },
     {
         iconAlt: "icone registrar",
-        iconFile: "AddIcon.svg",
+        iconFile: AddIcon,
     },
 ];
 
 export const toggleButtonsIcons: Array<IIconData> = [
     {
         iconAlt: "icone de recolher formulario",
-        iconFile: "UpIcon.svg",
+        iconFile: UpIcon,
     },
     {
         iconAlt: "icone buscar registros",
-        iconFile: "SearchIcon.svg",
+        iconFile: SearchIcon,
     },
 ];
