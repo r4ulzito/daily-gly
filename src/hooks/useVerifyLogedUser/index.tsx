@@ -17,8 +17,6 @@ export const useVerifyLogedUser = () => {
 
     const getUser = async (currentGoogleUser: firebase.User | null) => {
         if (currentGoogleUser) {
-            // const userToken = (await currentGoogleUser?.getIdToken()).split(".")[1];
-
             const response = await userLogin(
                 (await currentGoogleUser?.getIdToken()).split(".")[1]
             );
