@@ -50,7 +50,11 @@ const SideMenu = () => {
         <S.SideMenuContainer>
             <S.UserContainer>
                 <S.UserImagemContainer>
-                    <img src={user?.userPhotoUrl!} alt="icone do usuario" />
+                    <img
+                        src={user?.userPhotoUrl!}
+                        alt="icone do usuario"
+                        referrerPolicy="no-referrer"
+                    />
                 </S.UserImagemContainer>
                 <S.UserNameContainer>
                     <p>{formatName(user?.userName!)}</p>
